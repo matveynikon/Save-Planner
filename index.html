@@ -1,0 +1,158 @@
+<meta charset="utf-8">
+<title>Save Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+<style>
+  body{
+    background: khaki;
+  }
+  .saveform{
+    text-align: left;
+    margin-top: 10%;
+  }
+  .cont{
+    justify-content: center;
+    color: white;
+    background: mediumseagreen;
+    margin-left: 20%;
+    padding-left: 10%;
+    padding-top: 1%;
+    padding-bottom: 6%;
+    margin-top: 4%;
+    width: 50%;
+    border-radius: 10px;
+  }
+  .add{
+    width: 30%;
+    margin-top: 5%;
+    color: white;
+    background: lightseagreen;
+    left: 0%;
+    border: 2px solid white;
+    border-radius: 5px;
+    padding: 0.5% 1% 0.5% 1%;
+  }
+  *{
+    font-family: Ubuntu;
+    font-size: 18px;
+  }
+  h2{
+    font-size: 1.7em;
+    text-align: center;
+    margin-top: 3%;
+  }
+  h4{
+    font-size: 1.2em;
+    width: 70%;
+    margin-left: 15%;
+    text-align: center;
+    margin-top: 4%;
+  }
+  .inputs{
+    width: 15%; 
+    border-color: khaki; 
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  .inputs2{
+    width: 7.5%; 
+    border-color: khaki; 
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  #submit{
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+    background: lightseagreen;
+    padding: 0.5% 1% 0.5% 1%;
+  }
+  @media only screen and (max-width: 1000px) {
+    .inputs{
+      width: 18%; 
+      border-color: khaki; 
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    .inputs2{
+      width: 9%; 
+      border-color: khaki; 
+      border-radius: 5px;
+      font-size: 1em;
+    }
+    .cont{
+      justify-content: center;
+      margin-left: 5%;
+      padding-left: 10%;
+      padding-top: 1%;
+      padding-bottom: 6%;
+      margin-top: 4%;
+      width: 80%;
+      border-radius: 10px;
+    }
+    *{
+      font-family: Ubuntu;
+      font-size: 32px;
+    }
+    h2{
+      font-size: 40px;
+      text-align: center;
+      margin-top: 3%;
+    }
+    h4{
+      font-size: 30px;
+      width: 70%;
+      margin-left: 15%;
+      text-align: center;
+      margin-top: 4%;
+    }
+    #submit{
+      border-radius: 5px;
+      background: lightseagreen;
+      padding: 0.5% 1% 0.5% 1%;
+    }
+  }
+</style>
+<body>
+<h2>Save Planer</h2>
+<h4>Use this tool to see how mouch you need to save each month for different purposes.</h4>
+<div class="cont">
+<form class="saveform" id="saveform" name="juice" action="sankey.html">
+  <div id="f1" class="f1">
+    <label for="input">Monthly Disposable Income:</label><br>
+    <input type="text" id="input" name="input" value="" placeholder="2000" class="inputs"><br><br>
+    <label for="output" class="l1">Goal 1:</label><br>
+    Save <input type="text" id="output" name="output" placeholder="70000" value="" class="inputs">$
+    In <input type="text" id="months" name="months" placeholder="120" value="" class="inputs2"> Months For 
+    <input type="text" id="thing" name="thing" placeholder="house" value="" class="inputs"><br><br>
+  </div>
+  <br>
+  <input id="submit" type="submit" value="Submit">
+</form> 
+<button onclick="goal2()" id="add" class="add">Add goal</button>
+</div>
+<script>
+function goal2(){
+	var div1 = document.createElement("div");
+  div1.innerHTML = "<label for='output2'>Goal 2:</label><br>  Save <input type='text' id='output2' name='output2' placeholder='20000' value='' class='inputs'>$ In <input type='text' id='months2' name='months2' placeholder='12' value='' class='inputs2'> Months For <input type='text' id='thing2' name='thing2' placeholder='car' value='' class='inputs'><br><br>"
+  document.getElementById("add").setAttribute('onclick','goal3()');
+  document.getElementById("f1").appendChild(div1);
+}
+function goal3(){
+	var div1 = document.createElement("div");
+  div1.innerHTML = "<label for='output3'>Goal 3:</label><br>  Save <input type='text' id='output3' name='output3' placeholder='15000' value='' class='inputs'>$ In <input type='text' id='months3' name='months3' placeholder='6' value='' class='inputs2'> Months For <input type='text' id='thing3' name='thing3' placeholder='vacation' value='' class='inputs'><br><br>"
+  document.getElementById("add").setAttribute('onclick','goal4()');
+  document.getElementById("f1").appendChild(div1);
+}
+function goal4(){
+  var div1 = document.createElement("div");
+  div1.innerHTML = "<label for='output4'>Goal 4:</label><br>  Save <input type='text' id='output4' name='output4' placeholder='2500' value='' class='inputs'>$ In <input type='text' id='months4' name='months4' placeholder='8' value='' class='inputs2'> Months For <input type='text' id='thing4' name='thing4' placeholder='business' value='' class='inputs'><br><br>"
+  document.getElementById("f1").appendChild(div1);
+  var ab = document.getElementById("add");
+  ab.remove(); 
+}
+
+</script>
+</body>
+</html>
