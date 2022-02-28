@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Save Planner</title>
+<script src='https://cdn.plot.ly/plotly-2.9.0.min.js'></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+<style>
+body{
+    background:khaki;
+}
+@keyframes down-in {
+  from {margin-top: -10%;}
+  to {margin-top: 0%;}
+}    
+.md{
+    margin-top: 0%;
+    animation-name: down-in;
+    animation-duration: 2s;
+}
+li{
+    margin-left: 8%;
+}
+.info{
+    font-family: Ubuntu;
+    font-size: 20px;
+    margin-left: -3%;
+    margin-top: -2%;
+}
+.c2{
+    display: flex;
+    justify-content: center;
+}
+.c3{
+    display: flex;
+    justify-content: center;
+}
+.warning{
+  color: red;
+  font-family: Ubuntu;
+  font-size: 20px;
+  width: 80%;
+  text-align: center;
+  margin-top: 0%;
+}
+@media only screen and (max-width: 1000px) {
+  .info{
+    font-family: Ubuntu;
+    font-size: 24px;
+    margin-top: -3%;
+    margin-left: -4%;
+  }
+}
+</style>
+<body>
+<div id="myDiv" class="md"></div>
+
+<div class="c2" id="c2">
+</div>
+<div class="c3">
+  <ul id="info" class="info">
+    <br><br>
+  </ul>
+</div>
+<script>
+getParameter = (key) => {
+
+    // Address of the current window
+    address = window.location.search
+
+    // Returns a URLSearchParams object instance
+    parameterList = new URLSearchParams(address)
+
+    // Returning the respected value associated
+    // with the provided key
+    return parameterList.get(key)
+}
+
+input = getParameter("input")
+output = getParameter("output")
+output2 = getParameter("output2")
+output3 = getParameter("output3")
+output4 = getParameter("output4")
+months = getParameter("months")
+months2 = getParameter("months2")
+months3 = getParameter("months3")
+months4 = getParameter("months4")
+thing = getParameter("thing")
+thing2 = getParameter("thing2")
+thing3 = getParameter("thing3")
+thing4 = getParameter("thing4")
+if(input-(output/months)-(output2/months2)-(output3/months3) < 1){
+  document.getElementById("c2").innerHTML += "<div class='warning' id='warn'>Warning: Your total savings per month is bigger than or equal to your monthly disposable income!</div>"
+}
+document.getElementById("info").innerHTML += "<b>How much you need to save each month</b>"
+document.getElementById("info").innerHTML += "<br><br><li>Save "+parseInt(output/months)+"$ per month for " + thing+"</li>";
+if (output2 > 0){
+  document.getElementById("info").innerHTML += "<li>Save "+parseInt(output2/months2)+"$ per month for " + thing2+"</li>";
+}
+else{
+  console.log("no o2")
+  output2 = 1
+  months2 = 10
+}
+if (output3 > 0){
+  document.getElementById("info").innerHTML += "<li>Save "+parseInt(output3/months3)+"$ per month for " + thing3+"</li>";
+}
+else{
+  console.log("no o3")
+  output3 = 1
+  months3 = 10
+}
+if (output4 > 0){
+  document.getElementById("info").innerHTML += "<li>Save "+parseInt(output4/months4)+"$ per month for " + thing4+"</li>";
+}
+else{
+  console.log("no o4")
+  output4 = 1
+  months4 = 10
+}
+
+var data = {
+  type: "sankey",
+  orientation: "h",
+  node: {
+    pad: 30,
+    thickness: 30,
+    line: {
+      color: "blue",
+      width: 0
+    },
+   label: ["Income", "Rest", thing, thing2, thing3, thing4],
+   color: ["royalblue", "mediumseagreen", "royalblue", "royalblue", "royalblue", "royalblue"]
+      },
+
+  link: {
+    source: [0, 0, 0, 0, 0],
+    target: [1, 2, 3, 4, 5],
+    value:  [input-parseInt(output/months)-parseInt(output2/months2)-parseInt(output3/months3),parseInt(output/months), parseInt(output2/months2), parseInt(output3/months3)]
+  }
+}
+
+var data = [data]
+
+var layout = {
+  title: "Your Savings Plan Visualized(Per Month)",
+  font: {
+    size: 17,
+    color: "black"
+  },
+  paper_bgcolor: 'khaki'
+}
+
+Plotly.react('myDiv', data, layout)
+
+</script>
+</body>
+</html>
