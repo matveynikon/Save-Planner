@@ -20,6 +20,6 @@ The app is built on:
 3. Pure Javascript
 
 I've also used [Plotly](https://plotly.com/graphing-libraries/) for the sankey diagram.
-It is also possible to download you saving plan's sankey diagram as a `.png` file through Plotly.
+It is also possible to download your savings plan's sankey diagram as a `.png` file through Plotly.
 
 ![Downloading the sankey diagram](https://cdn.hashnode.com/res/hashnode/image/upload/v1646068679645/W8gZr1rOOz.png)
